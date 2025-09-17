@@ -1,0 +1,12 @@
+const {deployments,upgrades, ethers} = require("hardhat")
+
+module.exports = async function ({getNamedAccounts, deployments}) {
+    const BeggingContract = await ethers.getContractFactory("BeggingContract")
+    const beggingContract = await BeggingContract.deploy()
+    await beggingContract.waitForDeployment()
+    const contractAddress = await beggingContract.getAddress();
+    console.log(`BeggingContract 部署成功！地址: ${contractAddress}`);
+}
+
+// 脚本名称（可选，用于 Hardhat 命令调用）
+module.exports.tags = ["BeggingContract"];
